@@ -10,16 +10,12 @@ public class Main {
 		writer.close();
 		Arbore arb = new Arbore();
 		
-		for ( int i = 0 ; i < reader.expresii.length ; i++ ) {
-			
-			if ( reader.expresii[i] == null ){
-				
-				break;
-				
+		for ( int i = 0 ; i < reader.expresii.length ; i++ ) {			
+			if ( reader.expresii[i] == null ){				
+				break;			
 			}
 			
-			arb.creare(reader.expresii[i]);		//apelare metoda ce creeaza arborele		
-			
+			arb.creare(reader.expresii[i]);		//apelare metoda ce creeaza arborele			
 		}	
 
 	}
