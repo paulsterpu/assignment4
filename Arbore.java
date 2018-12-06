@@ -39,8 +39,7 @@ public class Arbore {
 			if (exp[i] != '*' && exp[i] != '/' && exp[i] != ':' && exp[i] != '+' && exp[i] != '-' && exp[i] != '>' && exp[i] != '<' && exp[i] != '(' && exp[i] != ')' && exp[i] != '=' && exp[i] != '?') {
 				
 				variabila = variabila + exp[i];
-				y = 1;
-				
+				y = 1;			
 			}
 			
 			else if (exp[i] == '*' || exp[i] == '/' || exp[i] == ':' || exp[i] == '+' || exp[i] == '-' || exp[i] == '>' || exp[i] == '<' || exp[i] == '(' || exp[i] == ')' || exp[i] == '=' || exp[i] == '?'){		//daca caracterul citit este un operator
@@ -56,11 +55,9 @@ public class Arbore {
 				
 				//inserez operatorul gasit in stiva in ordinea precedentei
 				
-				if ( vf == 0 ) {		//stiva goala
-					
+				if ( vf == 0 ) {		//stiva goala					
 					stack[vf] = exp[i];
-					vf = vf + 1;
-					
+					vf = vf + 1;					
 				}
 				else { 		//inserez in ordinea precedentei
 					
@@ -83,21 +80,17 @@ public class Arbore {
 								coada[c] = String.valueOf(stack[vf-1]);
 								c  = c + 1;
 								vf = vf - 1;
-
 							}
 
 							if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic	
 								stack[vf] = exp[i];
 								vf = vf + 1;
-
 							}
 
 						}
 						else {
-
 							stack[vf] = exp[i];
 							vf = vf + 1;
-
 						}
 
 					}
@@ -110,54 +103,42 @@ public class Arbore {
 							while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' || stack[vf - 1] == '-'  || exp[i] == '+'|| exp[vf - 1] == '>' || exp[vf - 1] == '<' ){
 
 								if (vf - 1 == 0 ){
-
 									coada[c] = String.valueOf(stack[vf - 1]);
 									stack[vf - 1] = exp[i];
 									c  = c + 1;
 									k = 0;
 									break;
 								}
-
 								coada[c] = String.valueOf(stack[vf-1]);
 								c  = c + 1;
 								vf = vf - 1;
-
 							}
 
 							if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic
-
 								stack[vf] = exp[i];
 								vf = vf + 1;
-
 							}
 
 						}
 						else {
 							stack[vf] = exp[i];
 							vf = vf + 1;
-
 						}
 					}
 					else if ( exp[i] == ')' ){		//scot tot din stiva pana la '('
-
 						while ( stack[vf - 1] != '(' ){
-
 							//System.out.println(stack[vf - 1]);
-
 							coada[c] = String.valueOf(stack[vf - 1]);
 							c = c + 1;										
 							vf = vf - 1;
-
 						}
 
 						vf = vf -1;
 
 					}
 					else if ( exp[i] == '(' || exp[i] == '?'){		//inserez indiferent de precedenta
-
 						stack[vf] = exp[i];
 						vf = vf + 1;
-
 					}
 				}
 
@@ -166,26 +147,21 @@ public class Arbore {
 		}
 		
 		//copiez in coada elementele ramase in stiva		
-		while ( vf > 0) {
-			
+		while ( vf > 0) {		
 			coada[c] = String.valueOf(stack[vf - 1]);
 			vf = vf - 1;
-			c = c + 1;
-			
+			c = c + 1;			
 		}
 		
 		//coada a fost creata
 		
 		//vreau inserez "?" intre elementele j-3 si j-2
 		
-		for ( int j = 0 ; j < c; j++ ) {
-			
+		for ( int j = 0 ; j < c; j++ ) {			
 			if ( coada[j].compareTo("?") == 0 ){
-
 				coada[j] = coada[j-1];
 				coada[j-1] = coada[j-2];
-				coada[j-2] = "?";
-				
+				coada[j-2] = "?";				
 			}
 			
 		}
@@ -198,18 +174,15 @@ public class Arbore {
 			//citesc un operator din coada, in afara de = deoarece deja am creat radacina arborelui care contine "="
 
 				if ( R.dreapta == null ) {
-
 					R.dreapta = new Nod(null , null , coada[j]);
 					R.dreapta.parinte = R;
 					R = R.dreapta;						
 				}
 
 				else if (R.stanga == null) {
-
 					R.stanga = new Nod(null , null , coada[j]);
 					R.stanga.parinte = R;
 					R = R.stanga;
-
 				}
 
 				else{
@@ -218,23 +191,18 @@ public class Arbore {
 					while ( R.stanga != null /*|| R.dreapta != null */) {
 						//System.out.println(j);
 						R = R.parinte;
-
 					}
 
 					if ( R.dreapta == null ) {
-
 						R.dreapta = new Nod(null , null , coada[j]);
 						R.dreapta.parinte = R;
 						R = R.dreapta;
-
 					}
 
 					else if (R.stanga == null) {
-
 						R.stanga = new Nod(null , null , coada[j]);
 						R.stanga.parinte = R;
 						R = R.stanga;
-
 					}
 
 				}
@@ -243,17 +211,13 @@ public class Arbore {
 			if ( coada[j].compareTo("*") != 0 || coada[j].compareTo("/") != 0 || coada[j].compareTo(":") != 0 || coada[j].compareTo("+") != 0 || coada[j].compareTo("-") != 0 || coada[j].compareTo(">") != 0 || coada[j].compareTo("<") != 0 || coada[j].compareTo(")") != 0 || coada[j].compareTo("(") != 0 || coada[j].compareTo("?") != 0 ) {
 				//din coada se citeste o variabila
 				if ( R.dreapta == null ) {
-
 					R.dreapta = new Nod(coada[j] , null , null);
 					R.dreapta.parinte = R;
-
 				}
 
 				else if ( R.stanga == null ){
-
 					R.stanga = new Nod(coada[j] , null , null);
 					R.dreapta.parinte = R;
-
 				}
 
 			}
@@ -285,10 +249,8 @@ public class Arbore {
 			//adaug fii in coada
 			if ( curent.dreapta != null ) {
 				
-				for ( int i = vf ; i < cap ; i-- ){
-					
-					queue[i] = queue[i - 1];
-					
+				for ( int i = vf ; i < cap ; i-- ){					
+					queue[i] = queue[i - 1];				
 				}
 				
 				curent.dreapta.distanta = curent.distanta + 1;
@@ -300,10 +262,8 @@ public class Arbore {
 			
 			if ( curent.stanga != null ) {
 				
-				for ( int i = vf ; i < cap ; i-- ){
-					
-					queue[i] = queue[i - 1];
-					
+				for ( int i = vf ; i < cap ; i-- ){					
+					queue[i] = queue[i - 1];					
 				}
 				
 				curent.stanga.distanta = curent.stanga.distanta + 1;
@@ -331,21 +291,15 @@ public class Arbore {
 							if ( queue[asd].dreapta == null && queue[asd].stanga == null) {
 
 								if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
-
-								rez = rez + "T" + queue[asd].parinte.operator;
-
+									rez = rez + "T" + queue[asd].parinte.operator;
 								}
 
 								else if ( queue[asd].parinte.operator.compareTo("*") == 0){
-
 									rez = rez + "F" + queue[asd].parinte.operator;
-
 								}
 
 							else {
-
-							rez = rez + "N" + queue[asd].parinte.operator;
-
+								rez = rez + "N" + queue[asd].parinte.operator;
 							}
 
 						}
@@ -357,21 +311,15 @@ public class Arbore {
 						if ( queue[asd + 1].dreapta == null && queue[asd].stanga == null ){
 
 							if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
-
-							rez = rez + "T" + queue[asd].parinte.operator;
-
+								rez = rez + "T" + queue[asd].parinte.operator;
 							}									
 
 							else if ( queue[asd].parinte.operator.compareTo("*") == 0){
-
 								rez = rez + "F" + queue[asd].parinte.operator;
-
 							}
 
 							else {
-
 								rez = rez + "N" + queue[asd].parinte.operator;
-
 							}
 
 						}						
@@ -396,9 +344,7 @@ public class Arbore {
 		}
 
 		if ( rez.length() == 0 ) {
-
 			rez = rez + "E";
-
 		}
 	   }
 		
