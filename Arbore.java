@@ -34,16 +34,13 @@ public class Arbore {
 		
 		String variabila = "";
 		
-		for ( int i = 0 ; i < s.length(); i++ ){
-			
-			if (exp[i] != '*' && exp[i] != '/' && exp[i] != ':' && exp[i] != '+' && exp[i] != '-' && exp[i] != '>' && exp[i] != '<' && exp[i] != '(' && exp[i] != ')' && exp[i] != '=' && exp[i] != '?') {
-				
+		for ( int i = 0 ; i < s.length(); i++ ){		
+			if (exp[i] != '*' && exp[i] != '/' && exp[i] != ':' && exp[i] != '+' && exp[i] != '-' && exp[i] != '>' && exp[i] != '<' && exp[i] != '(' && exp[i] != ')' && exp[i] != '=' && exp[i] != '?') {				
 				variabila = variabila + exp[i];
 				y = 1;			
 			}
 			
-			else if (exp[i] == '*' || exp[i] == '/' || exp[i] == ':' || exp[i] == '+' || exp[i] == '-' || exp[i] == '>' || exp[i] == '<' || exp[i] == '(' || exp[i] == ')' || exp[i] == '=' || exp[i] == '?'){		//daca caracterul citit este un operator
-				
+			else if (exp[i] == '*' || exp[i] == '/' || exp[i] == ':' || exp[i] == '+' || exp[i] == '-' || exp[i] == '>' || exp[i] == '<' || exp[i] == '(' || exp[i] == ')' || exp[i] == '=' || exp[i] == '?'){		//daca caracterul citit este un operator			
 				if ( y == 1 ) {
 					alfabet[0][a] = variabila;
 					a = a + 1;
@@ -59,14 +56,12 @@ public class Arbore {
 					stack[vf] = exp[i];
 					vf = vf + 1;					
 				}
-				else { 		//inserez in ordinea precedentei
-					
+				else { 		//inserez in ordinea precedentei					
 					if ( exp[i] == '*' || exp[i] == '/' || exp[i] == ':' ){
 
 						k = 1;
 
 						if ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':'){	// transfer din stiva in coada pana ajung in stiva la un operator a carui precedenta este mai mica decat a operatorului ce se doreste a fi inserat
-
 							while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' ){							
 								if (vf - 1 == 0 ){
 
