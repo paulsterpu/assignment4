@@ -62,116 +62,110 @@ public class Arbore {
 					vf = vf + 1;
 					
 				}
-				
-					else { 		//inserez in ordinea precedentei
+				else { 		//inserez in ordinea precedentei
 					
-						if ( exp[i] == '*' || exp[i] == '/' || exp[i] == ':' ){
-					
-							k = 1;
-							
-							if ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':'){	// transfer din stiva in coada pana ajung in stiva la un operator a carui precedenta este mai mica decat a operatorului ce se doreste a fi inserat
-								
-								while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' ){							
-									if (vf - 1 == 0 ){
-										
-										coada[c] = String.valueOf(stack[vf - 1]);
-										stack[vf - 1] = exp[i];
-										c  = c + 1;
-										k = 0;
-										break;
-									}
-									
-									coada[c] = String.valueOf(stack[vf-1]);
+					if ( exp[i] == '*' || exp[i] == '/' || exp[i] == ':' ){
+
+						k = 1;
+
+						if ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':'){	// transfer din stiva in coada pana ajung in stiva la un operator a carui precedenta este mai mica decat a operatorului ce se doreste a fi inserat
+
+							while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' ){							
+								if (vf - 1 == 0 ){
+
+									coada[c] = String.valueOf(stack[vf - 1]);
+									stack[vf - 1] = exp[i];
 									c  = c + 1;
-									vf = vf - 1;
-									
+									k = 0;
+									break;
 								}
-								
-								if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic	
-									stack[vf] = exp[i];
-									vf = vf + 1;
-									
-								}
-								
+
+								coada[c] = String.valueOf(stack[vf-1]);
+								c  = c + 1;
+								vf = vf - 1;
+
 							}
-							
-								else {
-								
-									stack[vf] = exp[i];
-									vf = vf + 1;
-								
-								}
-							
+
+							if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic	
+								stack[vf] = exp[i];
+								vf = vf + 1;
+
+							}
+
 						}
-								
-							else if ( exp[i] == '-' || exp[i] == '+' || exp[i] == '>' || exp[i] == '<' ){
-							
-									k = 1;
-									
-									if ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' || stack[vf - 1] == '-' || stack[vf - 1] == '+' || stack[vf - 1] == '>' || stack[vf - 1] == '<' ){	// transfer din stiva in coada pana ajung in stiva la un operator a carui precedenta este mai mica decat a operatorului ce se doreste a fi inserat
-										while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' || stack[vf - 1] == '-'  || exp[i] == '+'|| exp[vf - 1] == '>' || exp[vf - 1] == '<' ){
-											
-											if (vf - 1 == 0 ){
-											
-												coada[c] = String.valueOf(stack[vf - 1]);
-												stack[vf - 1] = exp[i];
-												c  = c + 1;
-												k = 0;
-												break;
-											}
-											
-											coada[c] = String.valueOf(stack[vf-1]);
-											c  = c + 1;
-											vf = vf - 1;
-											
-										}
-										
-										if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic
-											
-											stack[vf] = exp[i];
-											vf = vf + 1;
-											
-										}
-										
-									}
-									
-										else {
-											stack[vf] = exp[i];
-											vf = vf + 1;
-										
-										}
-							}
-						
-								else if ( exp[i] == ')' ){		//scot tot din stiva pana la '('
-									
-									while ( stack[vf - 1] != '(' ){
-										
-										//System.out.println(stack[vf - 1]);
-										
-										coada[c] = String.valueOf(stack[vf - 1]);
-										c = c + 1;										
-										vf = vf - 1;
-										
-									}
-									
-									vf = vf -1;
-									
-								}
-						
-									else if ( exp[i] == '(' || exp[i] == '?'){		//inserez indiferent de precedenta
-										
-										stack[vf] = exp[i];
-										vf = vf + 1;
-										
-									}
+						else {
+
+							stack[vf] = exp[i];
+							vf = vf + 1;
+
+						}
+
 					}
-				
+
+					else if ( exp[i] == '-' || exp[i] == '+' || exp[i] == '>' || exp[i] == '<' ){
+
+						k = 1;
+
+						if ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' || stack[vf - 1] == '-' || stack[vf - 1] == '+' || stack[vf - 1] == '>' || stack[vf - 1] == '<' ){	// transfer din stiva in coada pana ajung in stiva la un operator a carui precedenta este mai mica decat a operatorului ce se doreste a fi inserat
+							while ( stack[vf - 1] == '*' || stack[vf - 1] == '/' || stack[vf - 1] == ':' || stack[vf - 1] == '-'  || exp[i] == '+'|| exp[vf - 1] == '>' || exp[vf - 1] == '<' ){
+
+								if (vf - 1 == 0 ){
+
+									coada[c] = String.valueOf(stack[vf - 1]);
+									stack[vf - 1] = exp[i];
+									c  = c + 1;
+									k = 0;
+									break;
+								}
+
+								coada[c] = String.valueOf(stack[vf-1]);
+								c  = c + 1;
+								vf = vf - 1;
+
+							}
+
+							if ( k == 1 ){		//whileul s-a oprit din cauza ca in stiva sa ajuns la un operator mai mic
+
+								stack[vf] = exp[i];
+								vf = vf + 1;
+
+							}
+
+						}
+						else {
+							stack[vf] = exp[i];
+							vf = vf + 1;
+
+						}
+					}
+					else if ( exp[i] == ')' ){		//scot tot din stiva pana la '('
+
+						while ( stack[vf - 1] != '(' ){
+
+							//System.out.println(stack[vf - 1]);
+
+							coada[c] = String.valueOf(stack[vf - 1]);
+							c = c + 1;										
+							vf = vf - 1;
+
+						}
+
+						vf = vf -1;
+
+					}
+					else if ( exp[i] == '(' || exp[i] == '?'){		//inserez indiferent de precedenta
+
+						stack[vf] = exp[i];
+						vf = vf + 1;
+
+					}
+				}
+
 			}
 			
 		}
 		
-		//copiez in coada elementele ramase in stiva
-		
+		//copiez in coada elementele ramase in stiva		
 		while ( vf > 0) {
 			
 			coada[c] = String.valueOf(stack[vf - 1]);
@@ -200,69 +194,69 @@ public class Arbore {
 
 		for ( int j = c - 2 ; j >= 0 ; j-- ) {		//iau pe rand fiecare element din coada de la dreapta la stanga si creez arborele nod cu nod
 
-				if ( coada[j].compareTo("*") == 0 || coada[j].compareTo("/") == 0 || coada[j].compareTo(":") == 0 || coada[j].compareTo("+") == 0 || coada[j].compareTo("-") == 0 || coada[j].compareTo(">") == 0 || coada[j].compareTo("<") == 0 || coada[j].compareTo(")") == 0 || coada[j].compareTo("(") == 0 || coada[j].compareTo("?") == 0 ) {
-				//citesc un operator din coada, in afara de = deoarece deja am creat radacina arborelui care contine "="
+			if ( coada[j].compareTo("*") == 0 || coada[j].compareTo("/") == 0 || coada[j].compareTo(":") == 0 || coada[j].compareTo("+") == 0 || coada[j].compareTo("-") == 0 || coada[j].compareTo(">") == 0 || coada[j].compareTo("<") == 0 || coada[j].compareTo(")") == 0 || coada[j].compareTo("(") == 0 || coada[j].compareTo("?") == 0 ) {
+			//citesc un operator din coada, in afara de = deoarece deja am creat radacina arborelui care contine "="
+
+				if ( R.dreapta == null ) {
+
+					R.dreapta = new Nod(null , null , coada[j]);
+					R.dreapta.parinte = R;
+					R = R.dreapta;						
+				}
+
+				else if (R.stanga == null) {
+
+					R.stanga = new Nod(null , null , coada[j]);
+					R.stanga.parinte = R;
+					R = R.stanga;
+
+				}
+
+				else{
+					//daca ambii copii exista trebuie sa ma intorc pana in nodul in care are cel putin unul dintre copii null
+
+					while ( R.stanga != null /*|| R.dreapta != null */) {
+						//System.out.println(j);
+						R = R.parinte;
+
+					}
 
 					if ( R.dreapta == null ) {
 
 						R.dreapta = new Nod(null , null , coada[j]);
 						R.dreapta.parinte = R;
-						R = R.dreapta;						
-					}
-					
-						else if (R.stanga == null) {
-							
-							R.stanga = new Nod(null , null , coada[j]);
-							R.stanga.parinte = R;
-							R = R.stanga;
-							
-						}
-					
-							else{
-								//daca ambii copii exista trebuie sa ma intorc pana in nodul in care are cel putin unul dintre copii null
+						R = R.dreapta;
 
-								while ( R.stanga != null /*|| R.dreapta != null */) {
-									//System.out.println(j);
-									R = R.parinte;
-									
-								}
-								
-								if ( R.dreapta == null ) {
-									
-									R.dreapta = new Nod(null , null , coada[j]);
-									R.dreapta.parinte = R;
-									R = R.dreapta;
-									
-								}
-								
-									else if (R.stanga == null) {
-										
-										R.stanga = new Nod(null , null , coada[j]);
-										R.stanga.parinte = R;
-										R = R.stanga;
-										
-									}
-								
-							}
-				}
-				
-				if ( coada[j].compareTo("*") != 0 || coada[j].compareTo("/") != 0 || coada[j].compareTo(":") != 0 || coada[j].compareTo("+") != 0 || coada[j].compareTo("-") != 0 || coada[j].compareTo(">") != 0 || coada[j].compareTo("<") != 0 || coada[j].compareTo(")") != 0 || coada[j].compareTo("(") != 0 || coada[j].compareTo("?") != 0 ) {
-					//din coada se citeste o variabila
-					if ( R.dreapta == null ) {
-						
-						R.dreapta = new Nod(coada[j] , null , null);
-						R.dreapta.parinte = R;
-						
 					}
-					
-						else if ( R.stanga == null ){
-							
-							R.stanga = new Nod(coada[j] , null , null);
-							R.dreapta.parinte = R;
-							
-						}
-					
+
+					else if (R.stanga == null) {
+
+						R.stanga = new Nod(null , null , coada[j]);
+						R.stanga.parinte = R;
+						R = R.stanga;
+
+					}
+
 				}
+			}
+
+			if ( coada[j].compareTo("*") != 0 || coada[j].compareTo("/") != 0 || coada[j].compareTo(":") != 0 || coada[j].compareTo("+") != 0 || coada[j].compareTo("-") != 0 || coada[j].compareTo(">") != 0 || coada[j].compareTo("<") != 0 || coada[j].compareTo(")") != 0 || coada[j].compareTo("(") != 0 || coada[j].compareTo("?") != 0 ) {
+				//din coada se citeste o variabila
+				if ( R.dreapta == null ) {
+
+					R.dreapta = new Nod(coada[j] , null , null);
+					R.dreapta.parinte = R;
+
+				}
+
+				else if ( R.stanga == null ){
+
+					R.stanga = new Nod(coada[j] , null , null);
+					R.dreapta.parinte = R;
+
+				}
+
+			}
 		}
 		
 		//parcurgere in latime pentru afisare
@@ -331,87 +325,82 @@ public class Arbore {
 					
 					if ( curent.stanga == null && curent.dreapta == null  ) {		//frunza = T sau N
 						
-							int asd = 0;
-							while ( queue[asd].distanta == curent.distanta ) {
-								
-								if ( queue[asd].dreapta == null && queue[asd].stanga == null) {
-									
-									if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
-									
-									rez = rez + "T" + queue[asd].parinte.operator;
-									
-									}
-									
-										else if ( queue[asd].parinte.operator.compareTo("*") == 0){
-											
-											rez = rez + "F" + queue[asd].parinte.operator;
-											
-										}
-									
-											else {
-											
-											rez = rez + "N" + queue[asd].parinte.operator;
-											
-										}
-									
+						int asd = 0;
+						while ( queue[asd].distanta == curent.distanta ) {
+
+							if ( queue[asd].dreapta == null && queue[asd].stanga == null) {
+
+								if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
+
+								rez = rez + "T" + queue[asd].parinte.operator;
+
+								}
+
+								else if ( queue[asd].parinte.operator.compareTo("*") == 0){
+
+									rez = rez + "F" + queue[asd].parinte.operator;
+
+								}
+
+							else {
+
+							rez = rez + "N" + queue[asd].parinte.operator;
+
 							}
-								
-								else {
-									
-									rez = rez + "E" + queue[asd].parinte.operator;
-									
-								}
-							
-								if ( queue[asd + 1].dreapta == null && queue[asd].stanga == null ){
-									
-									if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
-										
-									rez = rez + "T" + queue[asd].parinte.operator;
-									
-									}									
-									
-										else if ( queue[asd].parinte.operator.compareTo("*") == 0){
-										
-											rez = rez + "F" + queue[asd].parinte.operator;
-										
-										}
-									
-											else {
-											
-												rez = rez + "N" + queue[asd].parinte.operator;
-											
-											}
-									
-								}
-								
-									else {
-									
-										rez = rez + "E" + queue[asd].parinte.operator;
-									
-									}
-								
-								asd = asd + 2;
-								c = asd;
-								
-								if ( asd >= vf - 1 ){
-									
-									break;
-									
-								}
+
 						}
-						
-					}
-					
-				}			
-				
-			}
 								
-			if ( rez.length() == 0 ) {
-				
-				rez = rez + "E";
-				
-			}
+						else {
+							rez = rez + "E" + queue[asd].parinte.operator;
+						}
+							
+						if ( queue[asd + 1].dreapta == null && queue[asd].stanga == null ){
+
+							if ( queue[asd].parinte.operator.compareTo("+") == 0 || queue[asd].parinte.operator.compareTo("-") == 0 || queue[asd].parinte.operator.compareTo("=") == 0) {
+
+							rez = rez + "T" + queue[asd].parinte.operator;
+
+							}									
+
+							else if ( queue[asd].parinte.operator.compareTo("*") == 0){
+
+								rez = rez + "F" + queue[asd].parinte.operator;
+
+							}
+
+							else {
+
+								rez = rez + "N" + queue[asd].parinte.operator;
+
+							}
+
+						}						
+						else {
+							rez = rez + "E" + queue[asd].parinte.operator;
+						}
+								
+						asd = asd + 2;
+						c = asd;
+
+						if ( asd >= vf - 1 ){
+
+							break;
+
+						}
+					}
+
+				}
+					
+			}			
+
 		}
+
+		if ( rez.length() == 0 ) {
+
+			rez = rez + "E";
+
+		}
+	   }
 		
 	}
 	
